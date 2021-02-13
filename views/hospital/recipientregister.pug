@@ -1,0 +1,78 @@
+extends ../nav
+
+block content
+  include sidehospital
+
+  <div class="col-8">
+  <div class="card"  >
+    <div class="card-header"><h2>Register Recipient</h2>
+    </div>
+    <div class="card-body">
+       div(style='margin-left:20%;margin-right: 20%;')
+                    .text-center.border.border-light.p-4
+                      p.h4.mb-4 <h3><b> Register Recipient</b></h3>
+                      form(action="/hospital/registerrecipient" method="post")
+                        .form-row.mb-4
+                          .col
+                            // First name
+                            input#fname.form-control(type='text' placeholder='First name' name='firstName')
+                            small#ffname(style='color: red')
+                          .col
+                            // Last name
+                            input#lname.form-control(type='text' placeholder='Last name' name='lastName')
+                            small#llname(style='color: red')
+                        // E-mail
+                        input#email.form-control.mb-4(type='email' placeholder='E-mail' name='emailId')
+                        small#eemail(style='color: red')
+                        //input#age.form-control.mb-4(type='text' placeholder='Age' name='age')
+                        //small#aage(style='color: red')
+                        label(style='font-size: 20px;')
+                          strong Gender
+                        br
+                        input#gender(type='radio' style='font-size: 18px;' value='MALE' name='gender')
+                        |  Male
+                        br
+                        input#gender(type='radio' style='font-size: 18px;' value='FEMALE' name='gender')
+                        |  Female
+                        br
+                        small#ggender(style='color: red')
+                        br
+                        input#address.form-control.mb-4(type='text' placeholder='Address' name='address')
+                        small#aadress(style='color: red')
+                        input#contact.form-control.mb-4(type='text' placeholder='Contact No' name='contactNo')
+                        small#ccontact(style='color: red')
+                        label(style='font-size: 20px;')
+                          strong Select an Organ
+                        <select id="organ" class="form-control" name="organName">
+                          <option value="kidney">Kidney</option>
+                          <option value="liver">Liver</option>
+                          <option value="eye">Eye</option>
+                          <option value="bone_marrow">Bone Marrow</option>
+                        </select>
+                        <br>  
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="md-form mb-5">
+                                <h4 class="card-title"><b>Medical Report</b></h4>
+                                  input#fname.form-control(type='text' placeholder='BloodType' name='bloodType')
+                                  small#ffname(style='color: red')
+                                  input#lname.form-control(type='text' placeholder='Protein 1' name='proteinOne')
+                                  small#llname(style='color: red')
+                                  //label Protein2
+                                  input#fname.form-control(type='text' placeholder='Protein 2' name='proteinTwo')
+                                  small#ffname(style='color: red')
+                                  //label Referred Doctor
+                                  input#lname.form-control(type='text' placeholder='Doctor' name='doctor')
+                                  small#llname(style='color: red')
+                              </div>
+                            </div>
+                          </div>
+                        // Sign up button
+                        button#signup.btn.btn-info.my-4.btn-block( type="submit") Create Recipient
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  

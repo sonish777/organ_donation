@@ -1,0 +1,97 @@
+// rule Default{
+//     description:"Allow all participants access to all resources"
+//     participant:"org.hyperledger.composer.system.Participant"
+//     operation: ALL
+//     resource:"org.acme.shipping.perishable.*"
+//     action: ALLOW 
+// }
+
+
+rule HospitalCanSeeAllDonors{
+  description:"Hospital can see all donors"
+  participant:"org.organdonation.Hospital"
+  operation: READ
+  resource:"org.organdonation.Donor"
+  action:ALLOW
+}
+
+rule HospitalCreateRecipient{
+  description:"Hospital can Create Recipient"
+  participant:"org.organdonation.Hospital"
+  operation: ALL
+  resource:"org.organdonation.Recipient"
+  action:ALLOW
+}
+
+rule HospitalCRUDDoctors{
+  description:"Hospital can CRUD Doctors"
+  participant:"org.organdonation.Hospital"
+  operation: ALL
+  resource:"org.organdonation.Doctor"
+  action:ALLOW
+}
+
+rule DonarCURDThemselves{
+  description:"Donar can see themselves"
+  participant(p):"org.organdonation.Donor"
+  operation:READ,UPDATE,DELETE
+  resource(r):"org.organdonation.Person"
+  condition: (p.getIdentifier() == r.getIdentifier())
+  action:ALLOW
+}
+
+rule HotcSeeRecipientDetails{
+  description:"Hotc can see details of recipient"
+  participant:"org.organdonation.Hotc"
+  operation: READ
+  resource:"org.organdonation.Recipient"
+  action:ALLOW
+}
+
+rule HotcSeeDonarDetails{
+  description:"Hotc can see details of donor"
+  participant:"org.organdonation.Hotc"
+  operation: READ
+  resource:"org.organdonation.Donor"
+  action:ALLOW
+}
+
+rule HotcCanCRUDHospital{
+  description:"Hotc can create hospital"
+  participant:"org.organdonation.Hotc"
+  operation: ALL
+  resource:"org.organdonation.Hospital"
+  action:ALLOW
+}
+
+rule Default{
+    description:"All access - grant everything to everybody"
+    participant:"org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource:"org.organdonation.*"
+    action: ALLOW 
+}
+
+rule SystemACL{
+    description:"All access - grant everything to everybody"
+    participant:"org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource:"org.hyperledger.composer.system.**"
+    action: ALLOW 
+}
+
+rule NetworkAdminUser{
+    description:"Grant business network administrators full access to user resources"
+    participant:"org.hyperledger.composer.system.NetworkAdmin"
+    operation:ALL
+    resource:"**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem{
+     description:"Grant business network administrators full access to system resources"
+    participant:"org.hyperledger.composer.system.NetworkAdmin"
+    operation:ALL
+    resource:"org.hyperledger.composer.system.**"
+    action: ALLOW
+}

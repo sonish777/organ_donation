@@ -1,0 +1,29 @@
+doctype html
+head
+  title
+    | Home
+  // Font Awesome
+  link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css')
+  // Bootstrap core CSS
+  link(href='/css/bootstrapmin.css' rel='stylesheet')
+  // Material Design Bootstrap
+  link(href='/css/mdbmin.css' rel='stylesheet')
+  // JQuery
+  script(type='text/javascript' src='/js/jquerymin.js')
+  // Bootstrap tooltips
+  script(type='text/javascript' src='/js/poppermin.js')
+  // Bootstrap core JavaScript
+  script(type='text/javascript' src='/js/bootstrapmin.js')
+  // MDB core JavaScript
+  script(type='text/javascript' src='/js/mdbmin.js')
+  script(type='text/javascript' src='/js/jquery1.js')
+ 
+
+body(style="overflow-x:hidden;")
+  div(style="min-height:525px; ")
+    include header
+    block content
+    
+
+  include footer
+  script(type='text/javascript' src='/js/bundle.js')

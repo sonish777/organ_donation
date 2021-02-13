@@ -1,0 +1,56 @@
+extends ../nav
+
+block content
+   include sideHotc
+
+    <div class="col-8">
+   <div class="card" >
+    <div class="card-header"><h2>Match List</h2>
+    </div>
+    <div class="card-body">
+      <div>
+        -if(organlists.length > 0)
+          <table class="table">
+            <thead class="black white-text">
+              <tr>
+                <th scope="col">SN</th>
+                <th scope="col">Donor</th>
+                <th scope="col">Reciever</th>
+                <th scope="col">Organ</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              -let i = 0;
+                each organlist in organlists
+                  <tr>
+                    <th scope="row">#{++i}</th>
+                    <td> <p><b>Name:</b> #{organlist.donor.firstName} #{organlist.donor.lastName}</p> 
+                          <p><strong>Address:</strong> #{organlist.donor.address}</p>
+                          <p><b>Gender:</b> #{organlist.donor.gender}</p>
+                          <p><b>Contact No:</b> #{organlist.donor.contactNo}</p>
+                          <p><b>Hospital:</b> #{organlist.sourceHospital.split("#")[1]}</p>
+                    </td>
+                    <td> <p><b>Name:</b> #{organlist.receiver.firstName} #{organlist.receiver.lastName}</p> 
+                          <p><strong>Address:</strong> #{organlist.receiver.address}</p>
+                          <p><b>Gender:</b> #{organlist.receiver.gender}</p>
+                          <p><b>Contact No:</b> #{organlist.receiver.contactNo}</p>
+                          <p><b>Hospital:</b> #{organlist.destHospital.split("#")[1]}</p>
+                    </td>
+                    <td>#{organlist.organName}</td>
+                    <td>#{organlist.status}</td>
+            </tbody>
+          </table>
+        -else
+          h2 No Matches
+        
+
+           
+
+        
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

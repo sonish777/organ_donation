@@ -1,0 +1,47 @@
+extends ../nav
+
+block content
+   include sideHotc
+
+    <div class="col-8">
+   <div class="card" >
+    <div class="card-header"><h2>Match Donor and Reciever</h2>
+    </div>
+    <div class="card-body">
+      <div>
+        form(action="/hotc/matched" method="post")
+            -if(donorToDonate.length > 0)
+                <center><h2> Donors </h2> </center>
+                    select( class="form-control" style="display:inline-block" name="donor")
+                        each donor in donorToDonate
+                            option(value=`${JSON.stringify(donor)}`)=`${donor.donor.firstName} ${donor.donor.lastName}  (${donor.organName}) [${donor.sourceHospital.split("#")[1]}]`
+            -else
+                <center><h2> Donors </h2> </center>
+                    select( class="form-control" style="display:inline-block")
+                    h3 No Donors Available
+                        
+
+            -if(recieverToRecieve.length > 0)
+                <center style="margin-top:150px;"><h2> Recievers </h2> </center>
+                    select( class="form-control" style="display:inline-block" name="reciever")
+                        each reciever in recieverToRecieve
+                            -if(!reciever.allocatedOrgan)
+                                option(value=`${JSON.stringify(reciever)}`)=`${reciever.firstName} ${reciever.lastName} (${reciever.organName}) [${reciever.hospital.split("#")[1]}]`
+            -else
+                <center><h2> Recievers </h2> </center>
+                    select( class="form-control" style="display:inline-block")
+                    h3 No Recievers Available
+
+            <center style="margin-top:150px; margin-bottom:50px;">
+                <button class="btn btn-success" type="submit"> Match</button>
+        
+
+           
+
+        
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

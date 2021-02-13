@@ -1,0 +1,40 @@
+extends ../nav
+
+block content
+   include sideHotc
+
+    <div class="col-8">
+   <div class="card"  >
+    <div class="card-header"><h2>Create Hospital</h2>
+    </div>
+    <div class="card-body">
+      div(style='margin-left:20%;margin-right: 20%;')
+        .text-center.border.border-light.p-4
+          form(action="/hotc/createhos" method= "post")
+            p.h4.mb-4 <h3> Create Account</h3>
+            .form-row.mb-4
+              .col
+                input#lname.form-control(type='text' placeholder='Hospital Name' name='name')
+                small#llname(style='color: red')
+            // E-mail
+            input#email.form-control.mb-4(type='email' placeholder='E-mail' name='emailId')
+            small#eemail(style='color: red')
+            // Password
+            input#password.form-control(type='password' placeholder='Password' aria-describedby='defaultRegisterFormPasswordHelpBlock' name='password')
+            small#ppassword(style='color: red')
+            br
+            input#cpassword.form-control(type='password' placeholder=' Confrim Password' aria-describedby='defaultRegisterFormPasswordHelpBlock' name='confirmpassword')
+            small#ccpassword(style='color: red')
+            br
+            input#address.form-control.mb-4(type='text' placeholder='Address' name='address')
+            small#aadress(style='color: red')
+            input#contact.form-control.mb-4(type='text' placeholder='Contact No' name='contactNo')
+            small#ccontact(style='color: red')
+            // Sign up button
+            button#signup.btn.btn-info.my-4.btn-block(type ="submit") Create           
+                      
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

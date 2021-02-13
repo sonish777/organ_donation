@@ -1,0 +1,61 @@
+extends base
+
+block content
+  div.view(style="margin:90px 40px 0px 60px;")
+    
+    img.img-fluid(src='/images/hero.jpg')
+    div(class="mask flex-center waves-effect waves-light rgba-teal-light")
+      h1(class="white-text" style="margin-top:120px;") Organ Donation &nbsp  
+      |     
+      h1(class="white-text" style="margin-top:120px;") Live life, Give Life
+  
+  div(style="margin-top:15px; margin-left:20px;")
+    img(src='/images/doctor.jpg' height="500px;"  )
+
+  
+  section(style="font-color:white; " )
+        // Section heading
+        //div(style="margin-left:90px;")
+        h2.h1-responsive.font-weight-bold.text-center.my-4 Contact us
+        // Section description
+        p.text-center.w-responsive.mx-auto.mb-5
+          | Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+          | a matter of hours to help you.
+          
+        .row
+          // Grid column
+          .col-md-9.mb-md-0.mb-5
+            form#contact-form(name='contact-form' action='mail.php' method='POST' style="margin-left:140px;")
+              // Grid row
+              .row
+                // Grid column
+                .col-md-6
+                  .md-form.mb-0
+                    input#name.form-control(type='text' name='name')
+                    label(for='name') Your name
+                // Grid column
+                // Grid column
+                .col-md-6
+                  .md-form.mb-0
+                    input#email.form-control(type='text' name='email')
+                    label(for='email') Your email
+                // Grid column
+              // Grid row
+              // Grid row
+              .row
+                .col-md-12
+                  .md-form.mb-0
+                    input#subject.form-control(type='text' name='subject')
+                    label(for='subject') Subject
+              // Grid row
+              // Grid row
+              .row
+                // Grid column
+                .col-md-12
+                  .md-form
+                    textarea#message.form-control.md-textarea(type='text' name='message' rows='2')
+                    label(for='message') Your message
+              // Grid row
+            .text-center.text-md-left
+              a.btn.btn-primary(onclick="document.getElementById('contact-form').submit();" style="margin-left:430px;") Send
+            .status  

@@ -1,0 +1,30 @@
+extends ../base
+
+block content
+  include sideDonor
+
+  <div class="col-8">
+  <div class="card"  >
+    <div class="card-header"><h2>Donate Organ</h2>
+    </div>
+    <div class="card-body">
+      <div ><center >
+        form(action='/donor/submitorgan' method="post")
+          label(style='font-size: 20px;')
+            strong Select an Organ
+            <br>
+            input(type="hidden" name="donor" value=`${donor.personId}`)
+            <select id="organ" class="form-control" style="display:inline-block" name="organName">
+              <option value="kidney">Kidney</option>
+              <option value="liver">Liver</option>
+              <option value="eye">Eye</option>
+              <option value="bone_marrow">Bone Marrow</option>
+            </select>
+            <button class="btn btn-success" type="submit" style="display:inline-block">Submit</button>
+      </center>
+      </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  </div>

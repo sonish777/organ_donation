@@ -1,0 +1,40 @@
+extends ../base
+
+block content
+  include sideDonor
+
+  <div class="col-8">
+  <div class="card" >
+    <div class="card-header"><h2>Donate Organ</h2>
+    </div>
+    <div class="card-body">
+      <div ><center >
+        -if(myOrgans.length > 0)
+            each organ in myOrgans
+                br
+                br
+                h2= `Appointment For ${organ.organName.charAt(0).toUpperCase() + organ.organName.slice(1)}`
+                form(action='/donor/submithospital' method="post")
+                        label(style='font-size: 20px;')
+                        strong Select Hospital
+                        br
+                        br
+                        input(type="hidden" name="donor" value=`${donor.personId}`)
+                        input(type="hidden" name="organId" value=`${organ.organId}`)
+                        input(type="hidden" name="organName" value=`${organ.organName}`)
+                        <select id="organ" class="form-control" style="display:inline-block" name="sourceHospital">
+                            each hospital in hospitals
+                                option(value=`${hospital.hospitalId}`)=`${hospital.name.charAt(0).toUpperCase() + hospital.name.slice(1)} Hospital (${hospital.address.charAt(0).toUpperCase() + hospital.address.slice(1)})`
+                        </select>
+                        <button class="btn btn-success" type="submit" style="display:inline-block">Submit</button>
+        -else
+            h2 No Appointments 
+            h3 Donate an organ for the appointment...
+      </center>
+
+      </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  </div>

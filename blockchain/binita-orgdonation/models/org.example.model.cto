@@ -1,0 +1,167 @@
+namespace org.organdonation
+
+enum Gender{
+    o MALE
+    o FEMALE
+}
+
+enum Role{
+  o donor
+  o receiver
+  o doctor
+  o hospital
+}
+
+abstract participant Person identified by personId{
+    o String personId
+    o String emailId
+    o String firstName
+    o String lastName
+    o Gender gender
+    o Role role optional
+} 
+
+participant Donor extends Person{
+  	o String password
+    o String contactNo
+    o String address
+    --> Report report optional
+}
+
+participant Doctor extends Person{
+    o String level
+    o Boolean specialist
+    --> Hospital hospital
+    o String password
+}
+
+participant Hospital identified by hospitalId{
+    o String hospitalId
+    o String name
+    o String contactNo
+    o String emailId
+    o String address
+    o String password
+    o Role role optional
+}
+
+participant Recipient extends Person {
+  o String contactNo
+  o String address
+  o String organName
+  o String organTestInfo
+  --> Hospital hospital
+  --> Organ allocatedOrgan optional
+  --> Report report optional
+}
+
+asset Report identified by reportId{
+  o String reportId
+  o String bloodType
+  o String proteinOne
+  o String proteinTwo
+}
+
+asset Organ identified by organId{
+    o String organId
+    o String organName
+    o String organTestInfo optional
+    --> Hospital sourceHospital optional
+    --> Hospital destHospital optional
+    --> Recipient recipient optional
+    --> Donor donor
+    --> Doctor doctor optional
+    --> Report report optional
+    o Status status
+}
+
+enum Status{
+  o OFFERED
+  o TESTED
+  o MATCHED
+  o TRANSPLANT
+}
+
+//Human Organ Transplant Center
+participant Hotc identified by hotcId {
+  o String hotcId
+}
+
+transaction Setup {
+}
+
+abstract transaction OrganStatus {
+  --> Organ organ
+}
+
+transaction Offered{
+    --> Donor donor
+    o String organName
+     o String organId
+}
+
+transaction Tested extends OrganStatus {
+  --> Hospital hospital
+  --> Doctor doctor
+  o String organTestInfo optional
+}
+
+transaction Matched extends OrganStatus {
+  --> Hospital hospital
+  --> Recipient recipient
+}
+
+transaction Transplant extends OrganStatus {
+
+}
+
+
+// transaction CreateDonar{
+//     o String emailId
+//     o String personId
+//     o String firstName
+//     o String lastName
+//     o String contactNo
+//     o Gender gender
+//     o Integer year
+//     o Integer month
+//     o Integer day
+//     o String address
+// }
+
+// transaction CreateDoctor{
+//     o String emailId
+//     o String personId
+//     o String hospitalId
+//     o String firstName
+//     o String lastName
+//     o Gender gender
+//     o Integer year
+//     o Integer month
+//     o Integer day
+//     o String level
+//     o Boolean specialist
+// }
+
+// transaction CreateHospital{
+//     o String hospitalId
+//     o String name
+//     o Double rating
+//     o String emailId
+//     o String address
+// }
+
+// transaction CreateRecipient {
+//     o String emailId
+//     o String personId
+//     o String firstName
+//     o String lastName
+//     o String contactNo
+//     o Gender gender
+//     o Integer year
+//     o Integer month
+//     o Integer day
+//     o String address
+//     o String hospitalId
+//     o String organName
+// }

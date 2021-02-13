@@ -1,0 +1,43 @@
+extends ../nav
+
+block content
+   include sideHotc
+
+    <div class="col-8">
+   <div class="card" >
+    <div class="card-header"><h2>List of Hospitals</h2>
+    </div>
+    <div class="card-body">
+      <div >
+        -if(hospitallists.length > 0)
+          <table class="table">
+            <thead class="black white-text">
+              <tr>
+                <th scope="col">SN</th>
+                <th scope="col">Hospital Name</th>
+                <th scope="col">Email Id</th>
+                <th scope="col">Address</th>
+                <th scope="col">Contact No</th>
+              </tr>
+            </thead>
+            <tbody>
+              -let i = 0;
+              each hospitallist in hospitallists
+                <tr>
+                  <th scope="row"> #{++i} </th>
+                  td=`${hospitallist.name}`
+                  td=`${hospitallist.emailId}`
+                  td=`${hospitallist.address}`
+                  td=`${hospitallist.contactNo}`
+                </tr>
+            </tbody>
+          </table>
+
+
+        
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

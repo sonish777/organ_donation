@@ -1,0 +1,67 @@
+extends ../nav
+
+block content
+   include sideHotc
+
+    <div class="col-8">
+   <div class="card" >
+    <div class="card-header"><h2>List of Reciver</h2>
+    </div>
+    <div class="card-body">
+      <div >
+        -if(allrecieverLists.length > 0)
+          <table class="table">
+            <thead class="black white-text">
+              <tr>
+                <th scope="col">SN</th>
+                <th scope="col">Reciever</th>
+                <th scope="col">Organ</th>
+                <th scope="col">Hospital</th>
+                <th scope="col">Status</th>
+                <th scope="col"> Medical Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              -let i = 0;
+                each recieverlist in allrecieverLists
+                  <tr>
+                    <th scope="row">#{++i}</th>
+                    <td> <p><b>Name:</b> #{recieverlist.firstName} #{recieverlist.lastName}</p> 
+                          <p><strong>Address:</strong> #{recieverlist.address}</p>
+                          <p><b>Gender:</b> #{recieverlist.gender}</p>
+                          <p><b>Contact No:</b> #{recieverlist.contactNo}</p>
+                    </td>
+                    <td>#{recieverlist.organName}</td>
+                    td=`${recieverlist.hospital.split("#")[1]}`
+                    -if(recieverlist.allocatedOrgan)
+                      <td><button class="btn btn-outline-success waves-effect" disabled>Matched</button></td>
+                    -else
+                      <td><button class="btn btn-outline-success waves-effect" disabled>Pending</button></td>
+                    <td>
+                      a(data-index=`${i}` id ="allrecieverdetails" style="font-size:25px; color:blue;") View Details
+                    </td>
+                    
+                  </tr>
+                  tr(id=`reciever-details${i}` style="display:none; font-size:20px;")
+                    <td colspan="5" >
+                      center
+                        h2=`Medical Details of ${recieverlist.firstName} `
+                        p=`BloodType: ${JSON.parse(recieverlist.organTestInfo).bloodType}`
+                        p=`ProteinOne: ${JSON.parse(recieverlist.organTestInfo).proteinOne}`
+                        p=`ProteinTwo: ${JSON.parse(recieverlist.organTestInfo).proteinTwo}`
+                        p=`Doctor: ${JSON.parse(recieverlist.organTestInfo).doctor}`
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+        -else
+          h2 No Recievers
+
+
+        
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>

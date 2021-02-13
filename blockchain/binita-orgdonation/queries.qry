@@ -1,0 +1,13 @@
+query selectOrganByDonor{
+  description: "List organ of a donor"
+  statement: 
+  		SELECT org.organdonation.Organ
+  			WHERE (donor == _$donor)
+} 
+
+query selectOrganByHospital{
+  description: "List of organ of source Hospital"
+  statement:
+  		SELECT org.organdonation.Organ
+  			WHERE (sourceHospital == _$sourceHospital)
+}
